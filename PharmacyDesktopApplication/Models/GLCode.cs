@@ -6,5 +6,6 @@
        public static string PurchaseMedicine = "Purchase Medicine";
        public static string AccountPayable = "Account Payable";
        public static string AccountReceivable = "Account Receivable";
+       public static string SaleMedicine = "Sale Medicine";
    }
 }

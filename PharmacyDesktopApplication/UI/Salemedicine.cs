@@ -169,90 +169,110 @@ namespace PharmacyDesktopApplication.UI
             SaveInvoice(db);
             db.SaveChanges();
             db.Dispose();
+            MessageBox.Show("Save successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            txtDiscount.Text = String.Empty;
+            txtPaid.Text = String.Empty;
+            txtGrandTotal.Text = String.Empty;
+            lvPurchaseMedicine.Items.Clear();
+            txtNote.Text = String.Empty;
+            txtCustomerName.Text = String.Empty;
+            txtPhone.Text = String.Empty;
         }
 
         private void SaveInvoice(PharmacyDbContext db)
         {
             Invoice invoice = new Invoice();
-            invoice.Id = UniqueNumber.GenerateUniqueNumber();
+            invoice.Id = Guid.NewGuid().ToString();
             invoice.CreatedDate = DateTime.Now;
             invoice.CreatedBy = currentUser;
             invoice.IsActive = true;
             db.Invoice.Add(invoice);
-            SavePurchaseMain(db, invoice.Id);
+            SaveSaleMain(db, invoice.Id);
         }
 
-        private void SavePurchaseMain(PharmacyDbContext db, string invoiceId)
+        private void SaveSaleMain(PharmacyDbContext db, string invoiceId)
         {
-          PurchaseMain main = new PurchaseMain();
-            main.Id = UniqueNumber.GenerateUniqueNumber();
+            string customerName = txtCustomerName.Text;
+            string[] name = customerName.Split('.');
+            customerName = name[0].Trim();
+            SaleMain main = new SaleMain();
+            main.Id = Guid.NewGuid().ToString(); 
             main.InvoiceId = invoiceId;
             main.CreatedBy = currentUser;
             main.CreatedDate = DateTime.Now;
-            main.CompanyId = Company.GetCompanyId(txtGrandTotal.Text, db, currentUser);
+            main.CustomerId = GetCustomerIdByName(customerName, db);//.GetCompanyId(txtGrandTotal.Text, db, currentUser);
             main.TotalAmount = Convert.ToDecimal(lblTotal.Text);
             main.Due = Convert.ToDecimal(txtDue.Text);
             main.Paid = Convert.ToDecimal(txtPaid.Text);
             main.Discount = Convert.ToDecimal(txtDiscount.Text);
             main.GrandTotal = (main.TotalAmount - main.Discount);
             main.Note = txtNote.Text;
-            db.PurchaseMain.Add(main);
-            SaveVoucher(main.GrandTotal, main.Paid, main.Due, main.CompanyId, invoiceId, db);
-            SavePurchaseSub(db, main.Id);
+            db.SaleMain.Add(main);
+            SaveVoucher(main.GrandTotal, main.Paid, main.Due, main.CustomerId, invoiceId, db);
+            
+            SaveSaleSub(db, main.Id);
         }
 
-        private void SaveVoucher(decimal grandTotal, decimal paid, decimal due, string companyId, string invoiceId, PharmacyDbContext db)
+        private void SaveVoucher(decimal grandTotal, decimal paid, decimal due, string customerId, string invoiceId, PharmacyDbContext db)
         {
             int count = 1;
             //Debit Entry
-            Voucher voucher = new Voucher
+            if (paid > 0)
             {
-                Id = UniqueNumber.GenerateUniqueNumber(),
-                CompanyId = companyId,
-                EntryNo = count++,
-                GLCode = GLCode.PurchaseMedicine,
-                Dr = grandTotal,
-                Cr = 0,
-                CreatedDate = DateTime.Now,
-                CreatedBy = currentUser
-            };
-            db.Voucher.Add(voucher);
-            
+                Voucher voucher = new Voucher
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    CustomerId = customerId,
+                    EntryNo = count++,
+                    GLCode = GLCode.Cash,
+                    Dr = paid,
+                    Cr = 0,
+                    InvoiceId = invoiceId,
+                    CreatedDate = DateTime.Now,
+                    CreatedBy = currentUser
+                };
+                db.Voucher.Add(voucher);
+            }
+            if (due > 0)
+            {
+                Voucher voucherCr2 = new Voucher
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    CustomerId = customerId,
+                    Cr = 0,
+                    GLCode = GLCode.AccountReceivable,
+                    Dr = due,
+                    InvoiceId = invoiceId,
+                    EntryNo = count++,
+                    CreatedDate = DateTime.Now,
+                    CreatedBy = currentUser
+                };
+                db.Voucher.Add(voucherCr2);
+            }
+
             //Credit Entry
             Voucher voucherCr1 = new Voucher
             {
-                Id = UniqueNumber.GenerateUniqueNumber(),
-                CompanyId = companyId,
-                Cr = paid,
-                GLCode = GLCode.Cash,
+                Id = Guid.NewGuid().ToString(),
+                CustomerId = customerId,
+                Cr = grandTotal,
+                GLCode = GLCode.SaleMedicine,
                 Dr = 0,
                 EntryNo = count++,
+                InvoiceId = invoiceId,
                 CreatedDate = DateTime.Now,
                 CreatedBy = currentUser
             };
-            if(paid > 0)
             db.Voucher.Add(voucherCr1);
-            Voucher voucherCr2 = new Voucher
-            {
-                Id = UniqueNumber.GenerateUniqueNumber(),
-                CompanyId = companyId,
-                Cr = due,
-                GLCode = GLCode.AccountPayable,
-                Dr = 0,
-                EntryNo = count++,
-                CreatedDate = DateTime.Now,
-                CreatedBy = currentUser
-            };
-            if (due > 0)
-                db.Voucher.Add(voucherCr2);
         }
 
-        private void SavePurchaseSub(PharmacyDbContext db, string purchaseMainId)
+        private void SaveSaleSub(PharmacyDbContext db, string purchaseMainId)
         {
             foreach (ListViewItem item in lvPurchaseMedicine.Items)
             {
-                PurchaseSub sub = new PurchaseSub();
-                sub.Id = UniqueNumber.GenerateUniqueNumber();
+                SaleSub sub = new SaleSub();
+                sub.Id = Guid.NewGuid().ToString();
                 sub.MainId = purchaseMainId;
                 sub.MedicinId = MedicineFactory.GetMedicineIdByName(item.SubItems[2].Text, db);
                 sub.Quantity = Convert.ToInt32(item.SubItems[3].Text);
@@ -260,7 +280,27 @@ namespace PharmacyDesktopApplication.UI
                 sub.Total = Convert.ToDecimal(item.SubItems[5].Text);
                 sub.CreatedBy = currentUser;
                 sub.CreatedDate = DateTime.Now;
-                db.PurchaseSub.Add(sub);
+                db.SaleSub.Add(sub);
+            }
+        }
+        public  string GetCustomerIdByName(string name, PharmacyDbContext db)
+        {
+            if (name == "") name = "Unknown";
+            Customer customer = db.Customer.FirstOrDefault(i => i.Name == name);
+            if (customer != null) return customer.Id;
+            else
+            {
+                customer = new Customer
+                {
+                    Id = UniqueNumber.GenerateUniqueNumber(),
+                    Name = name,
+                    Mobile = txtPhone.Text,
+                    CreatedBy = currentUser,
+                    CreatedDate = DateTime.Now
+                };
+                db.Customer.Add(customer);
+                db.SaveChanges();
+                return customer.Id;
             }
         }
     }

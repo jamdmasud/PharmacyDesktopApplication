@@ -14,7 +14,7 @@ namespace PharmacyDesktopApplication.Models.InformationFactory
             {
                 groups = new Groups
                 {
-                    Id = UniqueNumber.GenerateUniqueNumber(),
+                    Id = Guid.NewGuid().ToString(),
                     Name = group,
                     CreatedBy = currentUser,
                     CreatedDate = DateTime.Now

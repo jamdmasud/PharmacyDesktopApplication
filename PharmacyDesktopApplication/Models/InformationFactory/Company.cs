@@ -14,7 +14,7 @@ namespace PharmacyDesktopApplication.Models.InformationFactory
             {
                 companys = new Entities.Company()
                 {
-                    Id = UniqueNumber.GenerateUniqueNumber(),
+                    Id = Guid.NewGuid().ToString(),
                     Name = company,
                     CreatedBy = currentUser,
                     CreatedDate = DateTime.Now

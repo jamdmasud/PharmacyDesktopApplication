@@ -169,12 +169,13 @@ namespace PharmacyDesktopApplication.UI
             SaveInvoice(db);
             db.SaveChanges();
             db.Dispose();
+            MessageBox.Show("Save successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void SaveInvoice(PharmacyDbContext db)
         {
             Invoice invoice = new Invoice();
-            invoice.Id = UniqueNumber.GenerateUniqueNumber();
+            invoice.Id = Guid.NewGuid().ToString(); ;
             invoice.CreatedDate = DateTime.Now;
             invoice.CreatedBy = currentUser;
             invoice.IsActive = true;
@@ -185,7 +186,7 @@ namespace PharmacyDesktopApplication.UI
         private void SavePurchaseMain(PharmacyDbContext db, string invoiceId)
         {
           PurchaseMain main = new PurchaseMain();
-            main.Id = UniqueNumber.GenerateUniqueNumber();
+            main.Id = Guid.NewGuid().ToString(); 
             main.InvoiceId = invoiceId;
             main.CreatedBy = currentUser;
             main.CreatedDate = DateTime.Now;
@@ -207,7 +208,7 @@ namespace PharmacyDesktopApplication.UI
             //Debit Entry
             Voucher voucher = new Voucher
             {
-                Id = UniqueNumber.GenerateUniqueNumber(),
+                Id = Guid.NewGuid().ToString(),
                 CompanyId = companyId,
                 EntryNo = count++,
                 GLCode = GLCode.PurchaseMedicine,
@@ -222,7 +223,7 @@ namespace PharmacyDesktopApplication.UI
             //Credit Entry
             Voucher voucherCr1 = new Voucher
             {
-                Id = UniqueNumber.GenerateUniqueNumber(),
+                Id = Guid.NewGuid().ToString(),
                 CompanyId = companyId,
                 InvoiceId = invoiceId,
                 Cr = paid,
@@ -237,7 +238,7 @@ namespace PharmacyDesktopApplication.UI
 
             Voucher voucherCr2 = new Voucher
             {
-                Id = UniqueNumber.GenerateUniqueNumber(),
+                Id = Guid.NewGuid().ToString(),
                 CompanyId = companyId,
                 InvoiceId = invoiceId,
                 Cr = due,
@@ -256,7 +257,7 @@ namespace PharmacyDesktopApplication.UI
             foreach (ListViewItem item in lvPurchaseMedicine.Items)
             {
                 PurchaseSub sub = new PurchaseSub();
-                sub.Id = UniqueNumber.GenerateUniqueNumber();
+                sub.Id = Guid.NewGuid().ToString();
                 sub.MainId = purchaseMainId;
                 sub.MedicinId = MedicineFactory.GetMedicineIdByName(item.SubItems[2].Text, db);
                 sub.Quantity = Convert.ToInt32(item.SubItems[3].Text);

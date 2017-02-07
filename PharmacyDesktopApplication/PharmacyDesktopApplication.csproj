@@ -92,6 +92,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\GLCode.cs" />
     <Compile Include="Models\InformationFactory\Company.cs" />
+    <Compile Include="Models\InformationFactory\Customers.cs" />
     <Compile Include="Models\InformationFactory\Group.cs" />
     <Compile Include="Models\InformationFactory\MedicineFactory.cs" />
     <Compile Include="Models\UniqueNumber.cs" />
