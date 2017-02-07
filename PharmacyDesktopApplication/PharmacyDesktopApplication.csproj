@@ -33,7 +33,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JetEntityFrameworkProvider, Version=1.2.5.0, Culture=neutral, PublicKeyToken=756cf6beb8fe7b41, processorArchitecture=x86">
+      <HintPath>..\packages\JetEntityFrameworkProvider.1.2.6\lib\JetEntityFrameworkProvider.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,14 +59,78 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Entities\AppUser.cs" />
+    <Compile Include="Entities\Company.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\ExpenseMain.cs" />
+    <Compile Include="Entities\ExpenseSub.cs" />
+    <Compile Include="Entities\ExpenseType.cs" />
+    <Compile Include="Entities\Groups.cs" />
+    <Compile Include="Entities\Invoice.cs" />
+    <Compile Include="Entities\InvoiceType.cs" />
+    <Compile Include="Entities\Medicine.cs" />
+    <Compile Include="Entities\PharmacyDbContext.cs" />
+    <Compile Include="Entities\PurchaseMain.cs" />
+    <Compile Include="Entities\PurchaseSub.cs" />
+    <Compile Include="Entities\SaleMain.cs" />
+    <Compile Include="Entities\SaleSub.cs" />
+    <Compile Include="Entities\Voucher.cs" />
+    <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701312013003_InitialCreate.cs" />
+    <Compile Include="Migrations\201701312013003_InitialCreate.Designer.cs">
+      <DependentUpon>201701312013003_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702052022331_addPriceInDb.cs" />
+    <Compile Include="Migrations\201702052022331_addPriceInDb.Designer.cs">
+      <DependentUpon>201702052022331_addPriceInDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\GLCode.cs" />
+    <Compile Include="Models\InformationFactory\Company.cs" />
+    <Compile Include="Models\InformationFactory\Group.cs" />
+    <Compile Include="Models\InformationFactory\MedicineFactory.cs" />
+    <Compile Include="Models\UniqueNumber.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="login.Designer.cs">
+      <DependentUpon>login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\Hashing.cs" />
+    <Compile Include="UI\Salemedicine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Salemedicine.Designer.cs">
+      <DependentUpon>Salemedicine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PurchaseMedicine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PurchaseMedicine.Designer.cs">
+      <DependentUpon>PurchaseMedicine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SaveMedicine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SaveMedicine.Designer.cs">
+      <DependentUpon>SaveMedicine.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701312013003_InitialCreate.resx">
+      <DependentUpon>201701312013003_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702052022331_addPriceInDb.resx">
+      <DependentUpon>201702052022331_addPriceInDb.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,7 +139,21 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="login.resx">
+      <DependentUpon>login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Salemedicine.resx">
+      <DependentUpon>Salemedicine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PurchaseMedicine.resx">
+      <DependentUpon>PurchaseMedicine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SaveMedicine.resx">
+      <DependentUpon>SaveMedicine.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -76,6 +167,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="img\Login.jpg" />
+    <Content Include="img\logo.ico" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
