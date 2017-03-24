@@ -17,7 +17,7 @@ namespace PharmacyDesktopApplication
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Salemedicine());
+            Application.Run(new login());
         }
     }
 }

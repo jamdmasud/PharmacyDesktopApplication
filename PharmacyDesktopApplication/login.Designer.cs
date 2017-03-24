@@ -51,8 +51,9 @@
             this.txtPassword.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.txtPassword.Location = new System.Drawing.Point(80, 170);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '@';
             this.txtPassword.Size = new System.Drawing.Size(342, 31);
-            this.txtPassword.TabIndex = 0;
+            this.txtPassword.TabIndex = 1;
             // 
             // btnLogin
             // 
@@ -60,7 +61,7 @@
             this.btnLogin.Location = new System.Drawing.Point(79, 269);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(342, 42);
-            this.btnLogin.TabIndex = 1;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);

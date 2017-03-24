@@ -12,8 +12,10 @@ namespace PharmacyDesktopApplication.UI
     public partial class Salemedicine : Form
     {
         private string currentUser = "0";
-        public Salemedicine()
+
+        public Salemedicine(string user)
         {
+            currentUser = user;
             InitializeComponent();
             PharmacyDbContext db = new PharmacyDbContext();
             GetAutocompleteForMedicine(db);
@@ -27,10 +29,11 @@ namespace PharmacyDesktopApplication.UI
             source.AddRange(db.Medicine.ToList().Select(x => x.Name).ToArray());
             txtMedicine.AutoCompleteCustomSource = source;
         }
+
         private void GetAutocompleteForCustomer(PharmacyDbContext db)
         {
             var source = new AutoCompleteStringCollection();
-            source.AddRange(db.Customer.ToList().Select(x =>  x.Name).ToArray());
+            source.AddRange(db.Customer.ToList().Select(x =>  x.Name+". Mobile: "+ x.Mobile).ToArray());
             txtCustomerName.AutoCompleteCustomSource = source;
         }
 
@@ -64,7 +67,17 @@ namespace PharmacyDesktopApplication.UI
             decimal rate = Convert.ToDecimal(txtUnitPrice.Text);
             txtTotal.Text = (qty*rate).ToString();
         }
-        
+
+        private bool hasMadicineInStore(string medicine, string qty)
+        {
+            PharmacyDbContext db = new PharmacyDbContext();
+            string medicineId = MedicineFactory.GetMedicineIdByName(medicine, db);
+            int totalPurchased = db.PurchaseSub.Where(i => i.MedicinId == medicineId).ToList().Sum(o => o.Quantity);
+            int totalSale = db.SaleSub.Where(i => i.MedicinId == medicineId).ToList().Sum(o => o.Quantity);
+            bool result = totalPurchased > (totalSale + Convert.ToInt32(qty));
+            return result;
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             decimal subTotal = 0;
@@ -73,7 +86,11 @@ namespace PharmacyDesktopApplication.UI
             string quantity = txtQuantity.Text;
             string rate = txtUnitPrice.Text;
             string total = txtTotal.Text;
-            
+            if (!hasMadicineInStore(medicine, quantity))
+            {
+                MessageBox.Show("The medicine are you trying to sell is not in your store!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (ValidateField(medicine, quantity, rate, total)) return;
 
             
@@ -171,9 +188,14 @@ namespace PharmacyDesktopApplication.UI
             db.Dispose();
             MessageBox.Show("Save successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            txtDiscount.Text = String.Empty;
-            txtPaid.Text = String.Empty;
-            txtGrandTotal.Text = String.Empty;
+            ClearFields();
+        }
+
+        private void ClearFields()
+        {
+            txtDiscount.Text = "0";
+            txtPaid.Text = "0";
+            txtGrandTotal.Text = "0";
             lvPurchaseMedicine.Items.Clear();
             txtNote.Text = String.Empty;
             txtCustomerName.Text = String.Empty;
@@ -283,6 +305,7 @@ namespace PharmacyDesktopApplication.UI
                 db.SaleSub.Add(sub);
             }
         }
+
         public  string GetCustomerIdByName(string name, PharmacyDbContext db)
         {
             if (name == "") name = "Unknown";

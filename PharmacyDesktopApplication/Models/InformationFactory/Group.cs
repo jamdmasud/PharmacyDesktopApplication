@@ -6,8 +6,9 @@ namespace PharmacyDesktopApplication.Models.InformationFactory
 {
    public class Group
     {
-        public static string GetGroupId(string group, PharmacyDbContext db, string currentUser)
+        public static string GetGroupId(string group,  string currentUser)
         {
+            PharmacyDbContext db =new PharmacyDbContext();
             var groups = db.Groups.FirstOrDefault(x => x.Name == group);
             if (groups != null) return groups.Id;
             else
@@ -21,6 +22,7 @@ namespace PharmacyDesktopApplication.Models.InformationFactory
                 };
 
                 db.Groups.Add(groups);
+                db.SaveChanges();
             }
             return groups.Id;
         }

@@ -16,6 +16,7 @@ namespace PharmacyDesktopApplication.Entities
         public string GroupId { get; set; }
         public string CompanyId { get; set; }
         public DateTime ExpiredDate { get; set; }
+        public string MedicineType { set; get; }
         public decimal UnitPrice { get; set; }  
         public System.DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }

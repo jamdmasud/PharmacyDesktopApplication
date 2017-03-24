@@ -62,6 +62,7 @@
     <Compile Include="Entities\AppUser.cs" />
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\DuePayment.cs" />
     <Compile Include="Entities\ExpenseMain.cs" />
     <Compile Include="Entities\ExpenseSub.cs" />
     <Compile Include="Entities\ExpenseType.cs" />
@@ -89,13 +90,37 @@
     <Compile Include="Migrations\201702052022331_addPriceInDb.Designer.cs">
       <DependentUpon>201702052022331_addPriceInDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702101240542_DuePamentMigration.cs" />
+    <Compile Include="Migrations\201702101240542_DuePamentMigration.Designer.cs">
+      <DependentUpon>201702101240542_DuePamentMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702101243344_invoiceIdAdding.cs" />
+    <Compile Include="Migrations\201702101243344_invoiceIdAdding.Designer.cs">
+      <DependentUpon>201702101243344_invoiceIdAdding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702101245074_invoiceIdAdding1.cs" />
+    <Compile Include="Migrations\201702101245074_invoiceIdAdding1.Designer.cs">
+      <DependentUpon>201702101245074_invoiceIdAdding1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702111649203_MedicineType.cs" />
+    <Compile Include="Migrations\201702111649203_MedicineType.Designer.cs">
+      <DependentUpon>201702111649203_MedicineType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\GLCode.cs" />
     <Compile Include="Models\InformationFactory\Company.cs" />
     <Compile Include="Models\InformationFactory\Customers.cs" />
     <Compile Include="Models\InformationFactory\Group.cs" />
     <Compile Include="Models\InformationFactory\MedicineFactory.cs" />
+    <Compile Include="Models\PurchaseList.cs" />
+    <Compile Include="Models\Store.cs" />
+    <Compile Include="Models\SaleDetail.cs" />
     <Compile Include="Models\UniqueNumber.cs" />
+    <Compile Include="PharmacyDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PharmacyDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="login.cs">
@@ -105,6 +130,48 @@
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
     <Compile Include="Security\Hashing.cs" />
+    <Compile Include="UI\ShowExpenseDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ShowExpenseDetails.Designer.cs">
+      <DependentUpon>ShowExpenseDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MedicineStorage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MedicineStorage.Designer.cs">
+      <DependentUpon>MedicineStorage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PurchaseMedicinesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PurchaseMedicinesList.Designer.cs">
+      <DependentUpon>PurchaseMedicinesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ViewExpense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ViewExpense.Designer.cs">
+      <DependentUpon>ViewExpense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ShowDueDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ShowDueDetails.Designer.cs">
+      <DependentUpon>ShowDueDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DueList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DueList.Designer.cs">
+      <DependentUpon>DueList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SaveExpense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SaveExpense.Designer.cs">
+      <DependentUpon>SaveExpense.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Salemedicine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +183,12 @@
     </Compile>
     <Compile Include="UI\PurchaseMedicine.Designer.cs">
       <DependentUpon>PurchaseMedicine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SaveExpenseType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SaveExpenseType.Designer.cs">
+      <DependentUpon>SaveExpenseType.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\SaveMedicine.cs">
       <SubType>Form</SubType>
@@ -132,6 +205,18 @@
     <EmbeddedResource Include="Migrations\201702052022331_addPriceInDb.resx">
       <DependentUpon>201702052022331_addPriceInDb.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702101240542_DuePamentMigration.resx">
+      <DependentUpon>201702101240542_DuePamentMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702101243344_invoiceIdAdding.resx">
+      <DependentUpon>201702101243344_invoiceIdAdding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702101245074_invoiceIdAdding1.resx">
+      <DependentUpon>201702101245074_invoiceIdAdding1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702111649203_MedicineType.resx">
+      <DependentUpon>201702111649203_MedicineType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -145,16 +230,51 @@
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ShowExpenseDetails.resx">
+      <DependentUpon>ShowExpenseDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MedicineStorage.resx">
+      <DependentUpon>MedicineStorage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PurchaseMedicinesList.resx">
+      <DependentUpon>PurchaseMedicinesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ViewExpense.resx">
+      <DependentUpon>ViewExpense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ShowDueDetails.resx">
+      <DependentUpon>ShowDueDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DueList.resx">
+      <DependentUpon>DueList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SaveExpense.resx">
+      <DependentUpon>SaveExpense.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Salemedicine.resx">
       <DependentUpon>Salemedicine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\PurchaseMedicine.resx">
       <DependentUpon>PurchaseMedicine.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\SaveExpenseType.resx">
+      <DependentUpon>SaveExpenseType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\SaveMedicine.resx">
       <DependentUpon>SaveMedicine.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="PharmacyDataSet.xsc">
+      <DependentUpon>PharmacyDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PharmacyDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PharmacyDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PharmacyDataSet.xss">
+      <DependentUpon>PharmacyDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

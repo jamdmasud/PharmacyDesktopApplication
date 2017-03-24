@@ -17,8 +17,9 @@ namespace PharmacyDesktopApplication.UI
     public partial class SaveMedicine : Form
     {
         private string currentUser = "0";
-        public SaveMedicine()
+        public SaveMedicine(string currentUser)
         {
+            this.currentUser = currentUser;
             InitializeComponent();
             PharmacyDbContext db = new PharmacyDbContext();
             GetAutocompleteForCompany(db);
@@ -109,8 +110,8 @@ namespace PharmacyDesktopApplication.UI
         
         private void btnSave_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 PharmacyDbContext db = new PharmacyDbContext();
                 foreach (ListViewItem item in lvMedicine.Items)
                 {
@@ -120,20 +121,20 @@ namespace PharmacyDesktopApplication.UI
                     medicine.Id = UniqueNumber.GenerateUniqueNumber();
                     medicine.CreatedBy = currentUser;
                     medicine.CreatedDate = DateTime.Now;
-                    medicine.GroupId = Company.GetCompanyId(item.SubItems[3].Text, db, currentUser);
-                    medicine.CompanyId = Group.GetGroupId(item.SubItems[4].Text, db, currentUser);
-               
-                    db.Medicine.Add(medicine);
+                    medicine.GroupId = Group.GetGroupId(item.SubItems[3].Text, currentUser); 
+                    medicine.CompanyId = Company.GetCompanyId(item.SubItems[4].Text, currentUser);
+
+                db.Medicine.Add(medicine);
                 }
                 db.SaveChanges();
                 db.Dispose();
                 MessageBox.Show("Save successful!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lvMedicine.Items.Clear();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show("Saving Error:" + exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //}
+            //catch (Exception exception)
+            //{
+            //    MessageBox.Show("Saving Error:" + exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void btnReset_Click(object sender, EventArgs e)

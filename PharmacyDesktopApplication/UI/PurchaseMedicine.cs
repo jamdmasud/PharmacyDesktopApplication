@@ -12,8 +12,9 @@ namespace PharmacyDesktopApplication.UI
     public partial class PurchaseMedicine : Form
     {
         private string currentUser = "0";
-        public PurchaseMedicine()
+        public PurchaseMedicine(string user)
         {
+            currentUser = user;
             InitializeComponent();
             PharmacyDbContext db = new PharmacyDbContext();
             GetAutocompleteForMedicine(db);
@@ -170,6 +171,13 @@ namespace PharmacyDesktopApplication.UI
             db.SaveChanges();
             db.Dispose();
             MessageBox.Show("Save successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            lvPurchaseMedicine.Items.Clear();
+            txtDiscount.Text = "";
+            txtDue.Text = "";
+            txtPaid.Text = "";
+            txtNote.Text = "";
         }
 
         private void SaveInvoice(PharmacyDbContext db)
@@ -190,7 +198,7 @@ namespace PharmacyDesktopApplication.UI
             main.InvoiceId = invoiceId;
             main.CreatedBy = currentUser;
             main.CreatedDate = DateTime.Now;
-            main.CompanyId = Company.GetCompanyId(txtSupplier.Text, db, currentUser);
+            main.CompanyId = Company.GetCompanyId(txtSupplier.Text, currentUser);
             main.TotalAmount = Convert.ToDecimal(lblTotal.Text);
             main.Due = Convert.ToDecimal(txtDue.Text);
             main.Paid = Convert.ToDecimal(txtPaid.Text);

@@ -26,11 +26,13 @@ namespace PharmacyDesktopApplication
             {
                 PharmacyDbContext db = new PharmacyDbContext();
                 AppUser user = db.AppUser.ToList()
-                    .First(x => x.Email == username && x.Password == password);
+                    .FirstOrDefault(x => x.Email == username && x.Password == password);
                 if (user != null)
                 {
+                    
+                    Home home = new Home(username);
+                    home.Show();
                     this.Hide();
-                    new Home().ShowDialog();
                 }
                 else
                 {
@@ -42,5 +44,7 @@ namespace PharmacyDesktopApplication
                 Console.WriteLine(exception);
             }
         }
+
+       
     }
 }

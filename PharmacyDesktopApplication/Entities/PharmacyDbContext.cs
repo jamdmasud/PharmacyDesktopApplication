@@ -7,6 +7,7 @@ namespace PharmacyDesktopApplication.Entities
         public PharmacyDbContext(): base("PharmacyDbContext")
         {
         }
+        public virtual DbSet<DuePayment> DuePayment { get; set; }
         public virtual DbSet<AppUser> AppUser { get; set; }
         public virtual DbSet<Company> Company { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
