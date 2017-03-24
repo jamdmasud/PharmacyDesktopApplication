@@ -70,7 +70,7 @@
             this.reportToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(824, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(852, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -170,7 +170,7 @@
             this.dgvStorage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStorage.Location = new System.Drawing.Point(0, 83);
             this.dgvStorage.Name = "dgvStorage";
-            this.dgvStorage.Size = new System.Drawing.Size(824, 405);
+            this.dgvStorage.Size = new System.Drawing.Size(851, 405);
             this.dgvStorage.TabIndex = 2;
             this.dgvStorage.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvStorage_CellFormatting);
             // 
@@ -285,7 +285,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(824, 513);
+            this.ClientSize = new System.Drawing.Size(852, 513);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.Search);
             this.Controls.Add(this.txtSearch);
@@ -297,7 +297,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "MedicineStorage";
-            this.Text = "Home";
+            this.Text = "Medicine Storage";
             this.Load += new System.EventHandler(this.DueList_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

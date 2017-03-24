@@ -4,7 +4,7 @@ using PharmacyDesktopApplication.Entities;
 
 namespace PharmacyDesktopApplication.Models.InformationFactory
 {
-    public class Company
+    public class CompanyFactory
     {
         public static string GetCompanyId(string company,  string currentUser)
         {
@@ -13,7 +13,7 @@ namespace PharmacyDesktopApplication.Models.InformationFactory
             if (companys != null) return companys.Id;
             else
             {
-                companys = new Entities.Company()
+                companys = new Company()
                 {
                     Id = Guid.NewGuid().ToString(),
                     Name = company,

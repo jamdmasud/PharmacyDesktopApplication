@@ -186,6 +186,7 @@
             this.dgvExpense.Name = "dgvExpense";
             this.dgvExpense.Size = new System.Drawing.Size(907, 405);
             this.dgvExpense.TabIndex = 2;
+            this.dgvExpense.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExpense_CellClick);
             // 
             // chbFixeDatePurchase
             // 

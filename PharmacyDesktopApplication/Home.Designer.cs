@@ -38,21 +38,6 @@
             this.btnSoldMedicine = new System.Windows.Forms.Button();
             this.btnPuchasedMedicine = new System.Windows.Forms.Button();
             this.btnViewExpenses = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.soldMedicineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.purchasedMedicineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dailyTransactionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dueCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveMedicineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveExpenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSaveMedicine
@@ -181,110 +166,6 @@
             this.btnViewExpenses.UseVisualStyleBackColor = false;
             this.btnViewExpenses.Click += new System.EventHandler(this.button8_Click);
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.viewToolStripMenuItem,
-            this.saveToolStripMenuItem,
-            this.reportToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1184, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // viewToolStripMenuItem
-            // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.soldMedicineToolStripMenuItem,
-            this.purchasedMedicineToolStripMenuItem,
-            this.dailyTransactionToolStripMenuItem,
-            this.dueCollectionToolStripMenuItem});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
-            // 
-            // soldMedicineToolStripMenuItem
-            // 
-            this.soldMedicineToolStripMenuItem.Name = "soldMedicineToolStripMenuItem";
-            this.soldMedicineToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.soldMedicineToolStripMenuItem.Text = "Sold Medicine";
-            // 
-            // purchasedMedicineToolStripMenuItem
-            // 
-            this.purchasedMedicineToolStripMenuItem.Name = "purchasedMedicineToolStripMenuItem";
-            this.purchasedMedicineToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.purchasedMedicineToolStripMenuItem.Text = "Purchased Medicine";
-            // 
-            // dailyTransactionToolStripMenuItem
-            // 
-            this.dailyTransactionToolStripMenuItem.Name = "dailyTransactionToolStripMenuItem";
-            this.dailyTransactionToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.dailyTransactionToolStripMenuItem.Text = "Daily Transaction";
-            // 
-            // dueCollectionToolStripMenuItem
-            // 
-            this.dueCollectionToolStripMenuItem.Name = "dueCollectionToolStripMenuItem";
-            this.dueCollectionToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.dueCollectionToolStripMenuItem.Text = "Due Collection";
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveMedicineToolStripMenuItem,
-            this.saveExpenseToolStripMenuItem,
-            this.saveGroupToolStripMenuItem,
-            this.companyToolStripMenuItem});
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.saveToolStripMenuItem.Text = "Save";
-            // 
-            // saveMedicineToolStripMenuItem
-            // 
-            this.saveMedicineToolStripMenuItem.Name = "saveMedicineToolStripMenuItem";
-            this.saveMedicineToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.saveMedicineToolStripMenuItem.Text = "Medicine";
-            // 
-            // saveExpenseToolStripMenuItem
-            // 
-            this.saveExpenseToolStripMenuItem.Name = "saveExpenseToolStripMenuItem";
-            this.saveExpenseToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.saveExpenseToolStripMenuItem.Text = "Expense";
-            // 
-            // saveGroupToolStripMenuItem
-            // 
-            this.saveGroupToolStripMenuItem.Name = "saveGroupToolStripMenuItem";
-            this.saveGroupToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.saveGroupToolStripMenuItem.Text = "Group";
-            // 
-            // companyToolStripMenuItem
-            // 
-            this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
-            this.companyToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.companyToolStripMenuItem.Text = "Company";
-            // 
-            // reportToolStripMenuItem
-            // 
-            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.reportToolStripMenuItem.Text = "Report";
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,18 +182,13 @@
             this.Controls.Add(this.btnSoldMedicine);
             this.Controls.Add(this.btnStorage);
             this.Controls.Add(this.btnSaveMedicine);
-            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Home";
             this.Text = "Home";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Home_FormClosed);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -327,20 +203,6 @@
         private System.Windows.Forms.Button btnSoldMedicine;
         private System.Windows.Forms.Button btnPuchasedMedicine;
         private System.Windows.Forms.Button btnViewExpenses;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem soldMedicineToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem purchasedMedicineToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dailyTransactionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dueCollectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveMedicineToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveExpenseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveGroupToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem companyToolStripMenuItem;
     }
 }
 

@@ -44,6 +44,7 @@
             this.quantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.unitPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.total = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ExpiredDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblTotal = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDiscount = new System.Windows.Forms.TextBox();
@@ -56,17 +57,20 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.dtpExpiredDate = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
-            this.ExpiredDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtCompany = new System.Windows.Forms.TextBox();
+            this.txtGroup = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtMedicine
             // 
             this.txtMedicine.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtMedicine.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtMedicine.Location = new System.Drawing.Point(32, 45);
+            this.txtMedicine.Location = new System.Drawing.Point(32, 30);
             this.txtMedicine.Name = "txtMedicine";
             this.txtMedicine.Size = new System.Drawing.Size(115, 20);
             this.txtMedicine.TabIndex = 0;
@@ -75,7 +79,7 @@
             // label
             // 
             this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(31, 26);
+            this.label.Location = new System.Drawing.Point(31, 11);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(50, 13);
             this.label.TabIndex = 1;
@@ -83,7 +87,7 @@
             // 
             // txtQuantity
             // 
-            this.txtQuantity.Location = new System.Drawing.Point(258, 45);
+            this.txtQuantity.Location = new System.Drawing.Point(258, 30);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(85, 20);
             this.txtQuantity.TabIndex = 0;
@@ -92,7 +96,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(253, 26);
+            this.label2.Location = new System.Drawing.Point(253, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 1;
@@ -100,7 +104,7 @@
             // 
             // txtUnitPrice
             // 
-            this.txtUnitPrice.Location = new System.Drawing.Point(160, 45);
+            this.txtUnitPrice.Location = new System.Drawing.Point(160, 30);
             this.txtUnitPrice.Name = "txtUnitPrice";
             this.txtUnitPrice.Size = new System.Drawing.Size(85, 20);
             this.txtUnitPrice.TabIndex = 0;
@@ -108,7 +112,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(157, 26);
+            this.label3.Location = new System.Drawing.Point(157, 11);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 1;
@@ -116,7 +120,7 @@
             // 
             // txtTotal
             // 
-            this.txtTotal.Location = new System.Drawing.Point(356, 45);
+            this.txtTotal.Location = new System.Drawing.Point(356, 30);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(127, 20);
@@ -126,7 +130,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(356, 26);
+            this.label4.Location = new System.Drawing.Point(356, 11);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 13);
             this.label4.TabIndex = 1;
@@ -134,7 +138,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(620, 41);
+            this.btnAdd.Location = new System.Drawing.Point(620, 26);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 2;
@@ -152,9 +156,9 @@
             this.unitPrice,
             this.total,
             this.ExpiredDate});
-            this.lvPurchaseMedicine.Location = new System.Drawing.Point(32, 87);
+            this.lvPurchaseMedicine.Location = new System.Drawing.Point(32, 107);
             this.lvPurchaseMedicine.Name = "lvPurchaseMedicine";
-            this.lvPurchaseMedicine.Size = new System.Drawing.Size(663, 189);
+            this.lvPurchaseMedicine.Size = new System.Drawing.Size(663, 169);
             this.lvPurchaseMedicine.TabIndex = 3;
             this.lvPurchaseMedicine.UseCompatibleStateImageBehavior = false;
             this.lvPurchaseMedicine.View = System.Windows.Forms.View.Details;
@@ -186,6 +190,11 @@
             // 
             this.total.Text = "Total";
             this.total.Width = 120;
+            // 
+            // ExpiredDate
+            // 
+            this.ExpiredDate.Text = "Expired Date";
+            this.ExpiredDate.Width = 117;
             // 
             // lblTotal
             // 
@@ -283,7 +292,7 @@
             // dtpExpiredDate
             // 
             this.dtpExpiredDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpExpiredDate.Location = new System.Drawing.Point(489, 44);
+            this.dtpExpiredDate.Location = new System.Drawing.Point(489, 29);
             this.dtpExpiredDate.Name = "dtpExpiredDate";
             this.dtpExpiredDate.Size = new System.Drawing.Size(116, 20);
             this.dtpExpiredDate.TabIndex = 9;
@@ -291,16 +300,11 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(486, 26);
+            this.label8.Location = new System.Drawing.Point(486, 11);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(68, 13);
             this.label8.TabIndex = 1;
             this.label8.Text = "Expired Date";
-            // 
-            // ExpiredDate
-            // 
-            this.ExpiredDate.Text = "Expired Date";
-            this.ExpiredDate.Width = 117;
             // 
             // txtSupplier
             // 
@@ -329,11 +333,53 @@
             this.label9.TabIndex = 7;
             this.label9.Text = "Supplier";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(255, 59);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(51, 13);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "Company";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.Location = new System.Drawing.Point(31, 59);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(36, 13);
+            this.label11.TabIndex = 13;
+            this.label11.Text = "Group";
+            // 
+            // txtCompany
+            // 
+            this.txtCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtCompany.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtCompany.Location = new System.Drawing.Point(258, 77);
+            this.txtCompany.Name = "txtCompany";
+            this.txtCompany.Size = new System.Drawing.Size(347, 20);
+            this.txtCompany.TabIndex = 14;
+            // 
+            // txtGroup
+            // 
+            this.txtGroup.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtGroup.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtGroup.Location = new System.Drawing.Point(32, 77);
+            this.txtGroup.Name = "txtGroup";
+            this.txtGroup.Size = new System.Drawing.Size(213, 20);
+            this.txtGroup.TabIndex = 11;
+            // 
             // PurchaseMedicine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(726, 439);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.txtCompany);
+            this.Controls.Add(this.txtGroup);
             this.Controls.Add(this.txtNote);
             this.Controls.Add(this.dtpExpiredDate);
             this.Controls.Add(this.btnPrint);
@@ -400,5 +446,9 @@
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtCompany;
+        private System.Windows.Forms.TextBox txtGroup;
     }
 }

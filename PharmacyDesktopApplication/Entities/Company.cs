@@ -7,7 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestEfPharmacy
+using PharmacyDesktopApplication.Entities;
+
+namespace PharmacyDesktopApplication.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -22,13 +24,13 @@ namespace TestEfPharmacy
             this.Voucher = new HashSet<Voucher>();
         }
     
-        public System.Guid Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Volume { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<System.Guid> CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Medicine> Medicine { get; set; }

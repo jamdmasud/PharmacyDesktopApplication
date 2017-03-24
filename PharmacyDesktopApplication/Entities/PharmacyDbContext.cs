@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using PharmacyDesktopApplication.Entities;
 
 namespace PharmacyDesktopApplication.Entities
 {
@@ -23,6 +24,7 @@ namespace PharmacyDesktopApplication.Entities
         public virtual DbSet<SaleMain> SaleMain { get; set; }
         public virtual DbSet<SaleSub> SaleSub { get; set; }
         public virtual DbSet<Voucher> Voucher { get; set; }
+        public virtual DbSet<RequiredMedicine> RequiredMedicine { get; set; }   
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

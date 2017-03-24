@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using PharmacyDesktopApplication.Entities;
 using PharmacyDesktopApplication.Models;
 using PharmacyDesktopApplication.Models.InformationFactory;
-using Company = PharmacyDesktopApplication.Models.InformationFactory.Company;
 
 namespace PharmacyDesktopApplication.UI
 {
@@ -19,6 +18,8 @@ namespace PharmacyDesktopApplication.UI
             PharmacyDbContext db = new PharmacyDbContext();
             GetAutocompleteForMedicine(db);
             GetAutocompleteForSupplier(db);
+            GetAutocompleteForCompany(db);
+            GetAutocompleteForGroup(db);
             db.Dispose(); 
         }
 
@@ -35,6 +36,20 @@ namespace PharmacyDesktopApplication.UI
             txtSupplier.AutoCompleteCustomSource = source;
         }
 
+        private void GetAutocompleteForCompany(PharmacyDbContext db)
+        {
+            var source = new AutoCompleteStringCollection();
+            source.AddRange(db.Company.ToList().Select(x => x.Name).ToArray());
+            txtCompany.AutoCompleteCustomSource = source;
+        }
+
+        private void GetAutocompleteForGroup(PharmacyDbContext db)
+        {
+            var source = new AutoCompleteStringCollection();
+            source.AddRange(db.Groups.ToList().Select(x => x.Name).ToArray());
+            txtGroup.AutoCompleteCustomSource = source;
+        }
+
         public string GetMedicinePriceByName(string name)
         {
             PharmacyDbContext db = new PharmacyDbContext();
@@ -45,9 +60,20 @@ namespace PharmacyDesktopApplication.UI
         private void txtMedicine_Leave(object sender, System.EventArgs e)
         {
             PharmacyDbContext db = new PharmacyDbContext();
-            string medicine = txtMedicine.Text;
-            decimal rate = db.Medicine.Where(x => x.Name == medicine).Select(o => o.UnitPrice).FirstOrDefault();
-            txtUnitPrice.Text = rate.ToString();
+            string medicineName = txtMedicine.Text;
+            var medicine = db.Medicine.Where(x => x.Name == medicineName).Select(o => new
+            {
+                o.UnitPrice,
+                o.GroupId,
+                o.CompanyId
+            }).FirstOrDefault();
+            if (medicine != null)
+            {
+                 txtUnitPrice.Text = medicine.UnitPrice.ToString();
+                txtCompany.Text = db.Company.Find(medicine.CompanyId).Name;
+                txtGroup.Text = db.Groups.Find(medicine.GroupId).Name;
+            }
+           
         }
 
         private void txtQuantity_KeyUp(object sender, KeyEventArgs e)
@@ -78,6 +104,8 @@ namespace PharmacyDesktopApplication.UI
             
             if (ValidateField(exDate, medicine, quantity, rate, total)) return;
 
+            SaveMedicineIfNew();
+
             UpdateUnitPrice(medicine, rate, exDate);
 
             ListViewItem item = new ListViewItem();
@@ -93,6 +121,24 @@ namespace PharmacyDesktopApplication.UI
             lblTotal.Text = subTotal.ToString();
 
             ClearField();
+        }
+
+        private void SaveMedicineIfNew()
+        {
+            PharmacyDbContext db = new PharmacyDbContext();
+            Medicine medicine = new Medicine();
+
+            medicine = db.Medicine.FirstOrDefault(a => a.Name == txtMedicine.Text);
+            if (medicine != null)
+            {
+                medicine.Name = txtMedicine.Text;
+                medicine.Id = UniqueNumber.GenerateUniqueNumber();
+                medicine.CreatedBy = currentUser;
+                medicine.CreatedDate = DateTime.Now;
+                medicine.GroupId = GroupFactory.GetGroupId(txtGroup.Text, currentUser);
+                medicine.CompanyId = CompanyFactory.GetCompanyId(txtCompany.Text, currentUser);
+                db.Medicine.Add(medicine);
+            }
         }
 
         private void UpdateUnitPrice(string medicineName, string rate, DateTime exDate)
@@ -198,7 +244,7 @@ namespace PharmacyDesktopApplication.UI
             main.InvoiceId = invoiceId;
             main.CreatedBy = currentUser;
             main.CreatedDate = DateTime.Now;
-            main.CompanyId = Company.GetCompanyId(txtSupplier.Text, currentUser);
+            main.CompanyId = CompanyFactory.GetCompanyId(txtSupplier.Text, currentUser);
             main.TotalAmount = Convert.ToDecimal(lblTotal.Text);
             main.Due = Convert.ToDecimal(txtDue.Text);
             main.Paid = Convert.ToDecimal(txtPaid.Text);

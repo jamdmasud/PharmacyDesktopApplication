@@ -127,7 +127,13 @@ namespace PharmacyDesktopApplication.UI
                     e.CellStyle.BackColor = Color.Gold;
                     e.CellStyle.SelectionBackColor = Color.DarkOrange;
                 }
+                if (Convert.ToDateTime(e.Value.ToString()) < DateTime.Today)
+                {
+                    e.CellStyle.BackColor = Color.Brown;
+                    e.CellStyle.SelectionBackColor = Color.MediumVioletRed;
+                }
             }
         }
+      
     }
 }

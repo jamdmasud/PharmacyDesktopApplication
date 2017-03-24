@@ -4,7 +4,7 @@ using PharmacyDesktopApplication.Entities;
 
 namespace PharmacyDesktopApplication.Models.InformationFactory
 {
-   public class Group
+   public class GroupFactory
     {
         public static string GetGroupId(string group,  string currentUser)
         {

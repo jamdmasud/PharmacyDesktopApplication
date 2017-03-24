@@ -30,3 +30,6 @@ F:\Client's Project\Working\PharmacyManagement\PharmacyDesktopApplication\Pharma
 F:\Client's Project\Working\PharmacyManagement\PharmacyDesktopApplication\PharmacyDesktopApplication\obj\Debug\PharmacyDesktopApplication.pdb
 F:\Client's Project\Working\PharmacyManagement\PharmacyDesktopApplication\PharmacyDesktopApplication\bin\Debug\PharmacyDesktopApplication.pdb
 F:\Client's Project\Working\PharmacyManagement\PharmacyDesktopApplication\PharmacyDesktopApplication\obj\Debug\PharmacyDesktopApplication.csprojResolveAssemblyReference.cache
+F:\Client's Project\Working\PharmacyManagement\PharmacyDesktopApplication\PharmacyDesktopApplication\obj\Debug\PharmacyDesktopApplication.Migrations.final1.resources
+F:\Client's Project\Working\PharmacyManagement\PharmacyDesktopApplication\PharmacyDesktopApplication\obj\Debug\PharmacyDesktopApplication.UI.MedicineEditForm.resources
+F:\Client's Project\Working\PharmacyManagement\PharmacyDesktopApplication\PharmacyDesktopApplication\obj\Debug\PharmacyDesktopApplication.Migrations.RequiredMedicineAdded.resources

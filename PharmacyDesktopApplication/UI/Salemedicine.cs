@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using PharmacyDesktopApplication.Entities;
 using PharmacyDesktopApplication.Models;
 using PharmacyDesktopApplication.Models.InformationFactory;
-using Company = PharmacyDesktopApplication.Models.InformationFactory.Company;
 
 namespace PharmacyDesktopApplication.UI
 {

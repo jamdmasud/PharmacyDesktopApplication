@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using PharmacyDesktopApplication.Entities;
 using PharmacyDesktopApplication.Models;
 using PharmacyDesktopApplication.Models.InformationFactory;
-using Company = PharmacyDesktopApplication.Models.InformationFactory.Company;
 
 namespace PharmacyDesktopApplication.UI
 {
@@ -121,14 +120,13 @@ namespace PharmacyDesktopApplication.UI
                     medicine.Id = UniqueNumber.GenerateUniqueNumber();
                     medicine.CreatedBy = currentUser;
                     medicine.CreatedDate = DateTime.Now;
-                    medicine.GroupId = Group.GetGroupId(item.SubItems[3].Text, currentUser); 
-                    medicine.CompanyId = Company.GetCompanyId(item.SubItems[4].Text, currentUser);
-
-                db.Medicine.Add(medicine);
+                    medicine.GroupId = GroupFactory.GetGroupId(item.SubItems[3].Text, currentUser); 
+                    medicine.CompanyId = CompanyFactory.GetCompanyId(item.SubItems[4].Text, currentUser);
+                    db.Medicine.Add(medicine);
                 }
                 db.SaveChanges();
                 db.Dispose();
-                MessageBox.Show("Save successful!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(@"Save successful!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lvMedicine.Items.Clear();
             //}
             //catch (Exception exception)

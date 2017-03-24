@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using PharmacyDesktopApplication.Entities;
@@ -24,7 +25,6 @@ namespace PharmacyDesktopApplication.UI
 
         private void ShowData()
         {
-            List<PurchaseList> list =  new List<PurchaseList>();
             PharmacyDbContext db = new PharmacyDbContext();
             int rowNo = 1;
             var data = db.PurchaseSub
@@ -32,6 +32,7 @@ namespace PharmacyDesktopApplication.UI
                 .Select(x => new 
                 {
                     SL = rowNo++,
+                    x.Id,
                     x.MedicinId,
                     x.Quantity,
                     x.UnitPrice,
@@ -39,26 +40,25 @@ namespace PharmacyDesktopApplication.UI
                     Date = x.CreatedDate.ToString("d")
                 }).ToList();
 
-            foreach (var item in data)
+            List<PurchaseList> list = data.Select(item => new PurchaseList
             {
-                PurchaseList l = new PurchaseList
-                {
-                    SL = item.SL.ToString(),
-                    MedicineName = GetMedicineName(item.MedicinId),
-                    Quantity = item.Quantity,
-                    UnitPrice = item.UnitPrice,
-                    Total = item.Total,
-                    Date = item.Date
-                };
-                list.Add(l);
-            }
+                SL = item.SL.ToString(),
+                Id = item.Id,
+                MedicineName = GetMedicineName(item.MedicinId),
+                Quantity = item.Quantity,
+                UnitPrice = item.UnitPrice,
+                Total = item.Total,
+                Date = item.Date
+            }).ToList();
 
-            lblDueTotal.Text = db.PurchaseSub.Sum(x => x.Total).ToString();     // db.Voucher.Where(a => a.GLCode == GLCode.AccountReceivable && a.CustomerId != null).ToList().Sum(x => x.Dr-x.Cr).ToString();
+            lblDueTotal.Text = db.PurchaseSub.Sum(x => x.Total).ToString(CultureInfo.CurrentCulture);     // db.Voucher.Where(a => a.GLCode == GLCode.AccountReceivable && a.CustomerId != null).ToList().Sum(x => x.Dr-x.Cr).ToString();
                  // db.Voucher.Where(a => a.GLCode == GLCode.SaleMedicine && a.CustomerId != null).ToList().Sum(x => x.Cr).ToString();
             db.Dispose();
             dgvExpense.Columns.Clear();
             dgvExpense.DataSource = list;
+           dgvExpense.Columns[1].Visible = false;
             MakeFullWidthScreen();
+            AddButton();
         }
 
         private string GetMedicineName(string id)
@@ -83,7 +83,16 @@ namespace PharmacyDesktopApplication.UI
             };
             dgvExpense.Columns[0].Width = 60;
         }
-       
+
+        private void AddButton()
+        {
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.HeaderText = "View Details";
+            btn.Text = "View";
+            btn.UseColumnTextForButtonValue = true;
+            btn.Name = "btn";
+            dgvExpense.Columns.Add(btn);
+        }
 
         private void chbFixeDateDue_CheckedChanged(object sender, EventArgs e)
         {
@@ -197,8 +206,6 @@ namespace PharmacyDesktopApplication.UI
             MakeFullWidthScreen();
         }
 
-     
-
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             ShowData();
@@ -207,6 +214,31 @@ namespace PharmacyDesktopApplication.UI
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvExpense_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 7)
+            {
+                PharmacyDbContext db = new PharmacyDbContext();
+                DataGridView va = sender as DataGridView;
+                string purchaseId= va.Rows[e.RowIndex].Cells[1].Value.ToString();
+               
+                GetDueDetails(purchaseId);
+                 
+            }
+        }
+
+        private void GetDueDetails(string purchaseId)
+        {
+           MedicineEditForm  form = new MedicineEditForm(purchaseId);
+            form.Show();
+            form.FormClosed += Form_FormClosed;
+        }
+
+        private void Form_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ShowData();
         }
     }
 }
